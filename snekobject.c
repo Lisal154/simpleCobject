@@ -135,3 +135,38 @@ int snek_length(snek_object_t *snekobj){
   return -1;
 }
 
+snek_object_t *snek_add(snek_object_t *a, snek_object_t *b){
+  if(a == NULL || b == NULL){
+    return NULL;
+  }
+  
+  // if a is integer
+  if(a->kind == INTEGER && b->kind == INTEGER){
+    snek_object_t *sum = new_snek_integer(a->data.v_int + b->data.v_int);
+    return sum;
+  } else if(a->kind == INTEGER && b->kind == FLOAT){
+    snek_object_t *sum = new_snek_integer(a->data.v_int + b->data.v_float);
+    return sum;
+  }
+  // if a is float
+  if(a->kind == FLOAT && b->kind == INTEGER){
+    snek_object_t *sum = new_snek_float(a->data.v_float + b->data.v_int);
+    return sum;
+  }else if (a->kind == FLOAT && b->kind == FLOAT){
+    snek_object_t *sum  = new_snek_float(a->data.v_float + b->data.v_float);
+    return sum; 
+  }
+/* write again
+  // if a is a string
+  if(a->kind == STRING && b->kind != STRING){
+    return NULL;
+  }else if(a->kind == STRING && b-> kind == STRING){
+    int lengtha == snek_length(a);
+    int lengthb == snek_length(b);
+    int new_length = lengtha + lengthb;
+    calloc(new_length) 
+  }
+
+
+}
+*/
