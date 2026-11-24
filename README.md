@@ -1,3 +1,4 @@
+# Simple C Object
 Firstly, we are going to create `snekobject.h`, and define the values like this:
 ```C
 #include <stddef.h>
