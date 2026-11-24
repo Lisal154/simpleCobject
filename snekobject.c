@@ -181,5 +181,25 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b){
     snek_object_t *new_vector3 = new_snek_vector3(x, y, z);
     return new_vector3;
   }
+
+  // if a is an array
+  if(a->kind == ARRAY && b->kind != ARRAY){
+    return NULL;
+  }else if(a->kind == ARRAY && b->kind == ARRAY){
+    snek_object_t *new_array = new_snek_array(snek_length(a) + snek_length(b));
+    
+    int j = 0;
+
+    for(int i = 0; i < snek_length(a); i++){
+      snek_array_set(new_array, i, snek_array_get(a, i));
+    }
+    for(int i = snek_length(a); i < snek_length(a) + snek_length(b); i++){
+      snek_array_set(new_array, i, snek_array_get(b, j));
+      j++;
+    }
+    return new_array;
+  }else{
+  return NULL; 
+  }
 }
 
