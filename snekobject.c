@@ -170,5 +170,16 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b){
     free(temp);
     return new_string;
   }
+
+  // if a is a vector3
+  if(a->kind == VECTOR3 && b->kind != VECTOR3){
+    return NULL;
+  } else if(a->kind == VECTOR3 && b->kind == VECTOR3){
+    snek_object_t *x = snek_add(a->data.v_vector3.x, b->data.v_vector3.x);
+    snek_object_t *y = snek_add(a->data.v_vector3.y, b->data.v_vector3.y);
+    snek_object_t *z = snek_add(a->data.v_vector3.z, b->data.v_vector3.z);
+    snek_object_t *new_vector3 = new_snek_vector3(x, y, z);
+    return new_vector3;
+  }
 }
 
