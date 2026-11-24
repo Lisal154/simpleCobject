@@ -156,17 +156,19 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b){
     snek_object_t *sum  = new_snek_float(a->data.v_float + b->data.v_float);
     return sum; 
   }
-/* write again
+  
   // if a is a string
   if(a->kind == STRING && b->kind != STRING){
     return NULL;
   }else if(a->kind == STRING && b-> kind == STRING){
-    int lengtha == snek_length(a);
-    int lengthb == snek_length(b);
-    int new_length = lengtha + lengthb;
-    calloc(new_length) 
-  }
+    size_t new_length = snek_length(a) + snek_length(b);
+    char *temp = calloc(new_length, sizeof(char));
+    strcat(temp, a->data.v_string);
+    strcat(temp, b->data.v_string);
 
-*/
+    snek_object_t *new_string = new_snek_string(temp);
+    free(temp);
+    return new_string;
+  }
 }
 
